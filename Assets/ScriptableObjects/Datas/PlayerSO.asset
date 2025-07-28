@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e93c66b8478de41a61e37c1b1dddc8, type: 3}
+  m_Name: PlayerSO
+  m_EditorClassIdentifier: 
+  <GroundData>k__BackingField:
+    <BaseSpeed>k__BackingField: 5
+    <BaseRotationDamping>k__BackingField: 8
+    <WalkSpeedModifier>k__BackingField: 0.225
+    <RunSpeedModifier>k__BackingField: 1
+  <AirData>k__BackingField:
+    <JumpForce>k__BackingField: 4
+    <JumpSpeedModifier>k__BackingField: 0.8
+    <FallSpeedModifier>k__BackingField: 0.5
+  <AttackData>k__BackingField:
+    <BaseAttackInfo>k__BackingField:
+      <AttackType>k__BackingField: 0
+      <AttackName>k__BackingField: Attack_1
+      <Damage>k__BackingField: 10
+      <ForceTransitionTime>k__BackingField: 0.1
+      <Force>k__BackingField: 1
+      <ActivationTime>k__BackingField: 0.2
+      <ComboTransitionTime>k__BackingField: 0
+      <ComboStateIndex>k__BackingField: 0
+      <DetectionType>k__BackingField: 0
+      <BoxCastSize>k__BackingField: {x: 0, y: 0, z: 0}
+    <SkillIndexSlot>k__BackingField: 00000000
+    <AttackInfoDatas>k__BackingField:
+    - <AttackType>k__BackingField: 1
+      <AttackName>k__BackingField: Attack_2
+      <Damage>k__BackingField: 10
+      <ForceTransitionTime>k__BackingField: 0.1
+      <Force>k__BackingField: 1
+      <ActivationTime>k__BackingField: 0.3
+      <ComboTransitionTime>k__BackingField: 0.8
+      <ComboStateIndex>k__BackingField: 1
+      <DetectionType>k__BackingField: 1
+      <BoxCastSize>k__BackingField: {x: 1.5, y: 1, z: 1.5}
+    - <AttackType>k__BackingField: 1
+      <AttackName>k__BackingField: Attack_3
+      <Damage>k__BackingField: 20
+      <ForceTransitionTime>k__BackingField: 0.2
+      <Force>k__BackingField: 2
+      <ActivationTime>k__BackingField: 0.3
+      <ComboTransitionTime>k__BackingField: 0.8
+      <ComboStateIndex>k__BackingField: 2
+      <DetectionType>k__BackingField: 1
+      <BoxCastSize>k__BackingField: {x: 2, y: 1, z: 2}
+    - <AttackType>k__BackingField: 0
+      <AttackName>k__BackingField: Attack_4
+      <Damage>k__BackingField: 30
+      <ForceTransitionTime>k__BackingField: 0.3
+      <Force>k__BackingField: -5
+      <ActivationTime>k__BackingField: 0.5
+      <ComboTransitionTime>k__BackingField: 0.8
+      <ComboStateIndex>k__BackingField: -1
+      <DetectionType>k__BackingField: 1
+      <BoxCastSize>k__BackingField: {x: 1, y: 1, z: 2}
