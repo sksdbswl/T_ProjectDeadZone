@@ -24,18 +24,18 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
 
-        // ÂüÁ¶
+        // ï¿½ï¿½ï¿½ï¿½
         _player = FindObjectOfType<Player>();
         _uiManager = FindObjectOfType<UIManager>();
         _floatingTextManager = FindObjectOfType<FloatingTextManager>();
         _dayNightCycle = FindObjectOfType<DayNightCycle>();
 
 
-        // ÃÊ±âÈ­
+        // ï¿½Ê±ï¿½È­
         _dayNightCycle.Initialize();
         _uiManager.InitializeUI(this);
 
-        _player.Initialize(this);
+        //_player.Initialize(this);
     }
 
     // Start is called before the first frame update

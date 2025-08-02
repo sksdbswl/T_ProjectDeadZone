@@ -97,14 +97,14 @@ public class InventoryUI : MonoBehaviour
 
         ItemData itemData = selectedItem.ItemInstance.ItemData;
 
-        for (int i = 0; i < itemData.consumables.Length; i++)
-        {
-            switch (itemData.consumables[i].type)
-            {
-                case ConsumableType.Health:
-                    player.HealthSystem.TakeDamage(-itemData.consumables[i].value); break;
-            }
-        }
+        // for (int i = 0; i < itemData.consumables.Length; i++)
+        // {
+        //     switch (itemData.consumables[i].type)
+        //     {
+        //         case ConsumableType.Health:
+        //             player.HealthSystem.TakeDamage(-itemData.consumables[i].value); break;
+        //     }
+        // }
 
         if(selectedItem.ItemInstance.Use() == false)
         {
@@ -122,7 +122,7 @@ public class InventoryUI : MonoBehaviour
     {
         if(selectedItem == null) return;
 
-        player.EquipItem(selectedItem.ItemInstance);
+        //player.EquipItem(selectedItem.ItemInstance);
     }
     public void OnDropButton()
     {
@@ -134,7 +134,7 @@ public class InventoryUI : MonoBehaviour
         Drop(selectedItem.ItemInstance);
 
         itemSlots.Remove(selectedItem);
-        player.Inventory.RemoveItem(selectedItem.ItemInstance);
+        //player.Inventory.RemoveItem(selectedItem.ItemInstance);
         Destroy(selectedItem.gameObject);
     }
 

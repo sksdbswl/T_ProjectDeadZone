@@ -23,7 +23,7 @@ public class ItemObject : MonoBehaviour, IInteractable
 
     public void OnInteract(Player player)
     {
-        if(player.AddItem(item, amount))
-            Destroy(gameObject);
+        // if(player.AddItem(item, amount))
+        //     Destroy(gameObject);
     }
 }
