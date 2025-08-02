@@ -5,63 +5,91 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.PlayerLoop;
 
+using Cinemachine;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
 public class PlayerInput : MonoBehaviour
 {
-    public PlayerInputActions InputActions { get; private set; }
+    private PlayerInputActions playerInputActions;
+
+    public Vector2 MoveInput { get; private set; } // 이동 입력값을 담을 프로퍼티
     public PlayerInputActions.PlayerActions PlayerActions { get; private set; }
-    public PlayerInputActions.UIActions UIActions { get; private set; }
+    public CinemachineInputProvider cinemachineInputProvider { get; private set; }
 
-    // GameManager gameManager;
-    // UIManager uiManager;
-
-    public CinemachineInputProvider cinemachineInputProvider {  get; private set; }
-    
     private void Awake()
     {
-        InputActions = new PlayerInputActions();
-        PlayerActions = InputActions.Player;
-
-        //UIActions = InputActions.UI;
-        //UIActions.Inventory.performed += OnInventory;
-        //cinemachineInputProvider = FindObjectOfType<CinemachineInputProvider>();
-    }
-
-    private void Start()
-    {
-        //gameManager = GameManager.Instance;
-        //uiManager = gameManager.UIManager;
-    }
-
-    private void Update()
-    {
-        //Debug.Log($"InputActions.Player.Movement.ReadValue<Vector2>():: {InputActions.Player.Movement.ReadValue<Vector2>()}");
+        playerInputActions = new PlayerInputActions();
+        PlayerActions = playerInputActions.Player;
     }
 
     private void OnEnable()
     {
-        InputActions.Enable();
+        playerInputActions.Enable();
+
+        PlayerActions.Movement.performed += OnMovementPerformed;
+        PlayerActions.Movement.canceled += OnMovementCanceled;
     }
 
     private void OnDisable()
     {
-        InputActions.Disable();
+        PlayerActions.Movement.performed -= OnMovementPerformed;
+        PlayerActions.Movement.canceled -= OnMovementCanceled;
+
+        playerInputActions.Disable();
     }
 
-    // private void OnInventory(InputAction.CallbackContext context)
-    // {
-    //     bool active = uiManager.OpenInvetoryUI();
-    //     if (active)
-    //     {
-    //         PlayerActions.Disable();
-    //         cinemachineInputProvider.enabled = false;
-    //         Cursor.lockState = CursorLockMode.None;
-    //     }
-    //     else
-    //     {
-    //         PlayerActions.Enable();
-    //         cinemachineInputProvider.enabled = true;
-    //         Cursor.lockState = CursorLockMode.Locked;
-    //     }
-    // }
+    private void OnMovementPerformed(InputAction.CallbackContext context)
+    {
+        MoveInput = context.ReadValue<Vector2>();
+    }
 
+    private void OnMovementCanceled(InputAction.CallbackContext context)
+    {
+        MoveInput = Vector2.zero;
+    }
 }
+
+
+
+// public class PlayerInput : MonoBehaviour
+// {
+//     public PlayerInputActions InputActions { get; private set; }
+//     public PlayerInputActions.PlayerActions PlayerActions { get; private set; }
+//     public PlayerInputActions.UIActions UIActions { get; private set; }
+//     
+//     public CinemachineInputProvider cinemachineInputProvider {  get; private set; }
+//     
+//     private void Awake()
+//     {
+//         InputActions = new PlayerInputActions();
+//         PlayerActions = InputActions.Player;
+//         
+//         cinemachineInputProvider = FindObjectOfType<CinemachineInputProvider>();
+//         
+//         // PlayerActions.Movement.performed += ctx => InputActions = ctx.ReadValue<Vector2>();
+//         // PlayerActions.Movement.canceled += ctx => InputActions = Vector2.zero;
+//         
+//
+//         InputActions.Player.Movement.performed += ctx =>
+//         {
+//             InputActions = ctx.ReadValue<Vector2>();
+//         };
+//
+//         InputActions.Player.Movement.canceled += ctx =>
+//         {
+//             InputActions = Vector2.zero;
+//         };
+//     }
+//     
+//     private void OnEnable()
+//     {
+//         InputActions.Enable();
+//     }
+//
+//     private void OnDisable()
+//     {
+//         InputActions.Disable();
+//     }
+// }

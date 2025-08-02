@@ -7,12 +7,28 @@ public class Player : MonoBehaviour
 {
     [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
     [field: SerializeField] public PlayerSO Data { get; private set; }
+
     public PlayerStateMachine StateMachine { get; private set; }
-     public Rigidbody Rigidbody { get; private set; }
-     public Animator Animator { get; private set; }
-     public PlayerInput Input { get; private set; }
-     public CharacterController Controller { get; private set; }
-     
+    public Rigidbody Rigidbody { get; private set; }
+    public Animator Animator { get; private set; }
+    public PlayerInput Input { get; private set; }
+    public CharacterController Controller { get; private set; }
+
+    private void Awake()
+    {
+        Rigidbody = GetComponent<Rigidbody>();
+        Animator = GetComponentInChildren<Animator>();
+        Input = GetComponent<PlayerInput>();
+        Controller = GetComponent<CharacterController>();
+    }
+
+    private void Start()
+    {
+        Initialize();
+
+        StateMachine.ChangeState(StateMachine.IdleState);
+    }
+
     public void Initialize()
     {
         AnimationData.Initialize();
@@ -20,19 +36,17 @@ public class Player : MonoBehaviour
         StateMachine.ChangeState(StateMachine.IdleState); // 초기 상태 설정
     }
 
-    private void Start()
-    {
-         Rigidbody = GetComponent<Rigidbody>();
-         Animator = GetComponentInChildren<Animator>();
-         Input = GetComponent<PlayerInput>();
-         Controller = GetComponent<CharacterController>();
-         
-        Initialize();
-    }
-
     private void Update()
     {
-        StateMachine?.Update();
+        StateMachine.MovementInput = Input.MoveInput;
+
+        StateMachine.HandleInput();
+        StateMachine.Update();
+    }
+    
+    private void FixedUpdate()
+    {
+        StateMachine.PhysicsUpdate();
     }
 }
 

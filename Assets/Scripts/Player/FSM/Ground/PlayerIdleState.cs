@@ -10,12 +10,12 @@ public class PlayerIdleState : PlayerGroundState
     public override void Enter()
     {
         Debug.Log("Player Idle State");
+        ResetAllAnimationParameters();
         
+        stateMachine.MovementSpeedModifier = 0f;
         base.Enter();
-        //stateMachine.MovementSpeedModifier = 0f;
-        StartAnimation(stateMachine.Player.AnimationData.IdleParameterHash);
         
-        //base.HandleInput();
+        StartAnimation(stateMachine.Player.AnimationData.IdleParameterHash);
     }
 
     public override void Exit()
@@ -35,11 +35,11 @@ public class PlayerIdleState : PlayerGroundState
         }
         
         // 공격 키 입력 (예: 마우스 왼쪽 클릭) 감지
-        if (Input.GetMouseButtonDown(0)) // 또는 InputManager 활용
-        {
-            Debug.Log("공격 애니메이션으로 전환");
-            stateMachine.ChangeState(stateMachine.BaseAttackState);
-            return;
-        }
+        // if (Input.GetMouseButtonDown(0)) // 또는 InputManager 활용
+        // {
+        //     Debug.Log("공격 애니메이션으로 전환");
+        //     stateMachine.ChangeState(stateMachine.BaseAttackState);
+        //     return;
+        // }
     }
 }

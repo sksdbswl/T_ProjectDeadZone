@@ -19,12 +19,12 @@ public class PlayerBaseState : IState
 
     public virtual void Enter()
     {
-        //AddInputActionsCallbacks();
+        AddInputActionsCallbacks();
     }
 
     public virtual void Exit()
     {
-        //RemoveInputActionsCallbacks();
+        RemoveInputActionsCallbacks();
     }
 
     public virtual void Update()
@@ -51,7 +51,7 @@ public class PlayerBaseState : IState
     private void Move()
     {
         Vector3 movementDirection = GetMovementDirection();
-        //Rotate(movementDirection);
+        Rotate(movementDirection);
         Move(movementDirection);
     }
 
@@ -121,12 +121,12 @@ public class PlayerBaseState : IState
 
     protected void StartAnimation(int animationHash)
     {
-        stateMachine.Player.Animator.SetTrigger(animationHash);
+        stateMachine.Player.Animator.SetBool(animationHash, true);
     }
 
     protected void StopAnimation(int animationHash)
     {
-        stateMachine.Player.Animator.SetTrigger(animationHash);
+        stateMachine.Player.Animator.SetBool(animationHash, false);
     }
     
     protected virtual void OnMovementCanceled(InputAction.CallbackContext context)
@@ -135,5 +135,19 @@ public class PlayerBaseState : IState
     
     protected virtual void OnRunStarted(InputAction.CallbackContext context)
     {
+    }
+    
+    
+    private void AddInputActionsCallbacks()
+    {
+    }
+
+    private void RemoveInputActionsCallbacks()
+    {
+    }
+
+    protected virtual void OnRunCanceled(InputAction.CallbackContext context)
+    {
+        stateMachine.IsRunning = false;
     }
 }

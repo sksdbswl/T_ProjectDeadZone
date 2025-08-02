@@ -48,8 +48,8 @@ public class PlayerStateMachine : StateMachine
 
     public void Die()
     {
-        // Player.Animator.SetTrigger(Player.AnimationData.DieParameterHash);
-        // currentState = null;
+        Player.Animator.SetTrigger(Player.AnimationData.DieParameterHash);
+        currentState = null;
     }
 
 

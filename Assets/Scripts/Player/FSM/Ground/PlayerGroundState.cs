@@ -14,17 +14,32 @@ public class PlayerGroundState : PlayerBaseState
     {
         base.Enter();
         StartAnimation(stateMachine.Player.AnimationData.GroundParameterHash);
+        AddInputActionsCallbacks(); // ← 이게 있어야 이벤트 등록됨
     }
 
     public override void Exit()
     {
         base.Exit();
         StopAnimation(stateMachine.Player.AnimationData.GroundParameterHash);
+        RemoveInputActionsCallbacks(); // ← 나갈 때 제거
     }
 
+    private void AddInputActionsCallbacks()
+    {
+        stateMachine.Player.Input.PlayerActions.Run.started += OnRunStarted;
+        stateMachine.Player.Input.PlayerActions.Run.canceled += OnRunCanceled;
+    }
+
+    private void RemoveInputActionsCallbacks()
+    {
+        stateMachine.Player.Input.PlayerActions.Run.started -= OnRunStarted;
+        stateMachine.Player.Input.PlayerActions.Run.canceled -= OnRunCanceled;
+    }
+    
     public override void Update()
     {
         base.Update();
+        StartAnimation(stateMachine.Player.AnimationData.GroundParameterHash);
     }
 
     protected override void OnMovementCanceled(InputAction.CallbackContext context)
@@ -35,23 +50,36 @@ public class PlayerGroundState : PlayerBaseState
         stateMachine.ChangeState(stateMachine.IdleState);
         stateMachine.IsRunning = false;
     
-        //base.OnMovementCanceled(context);
+        base.OnMovementCanceled(context);
     }
     
     protected override void OnRunStarted(InputAction.CallbackContext context)
     {
-        //base.OnRunStarted(context);
+        base.OnRunStarted(context);
         stateMachine.IsRunning = true;
+    }
+    
+    protected virtual void OnRunCanceled(InputAction.CallbackContext context)
+    {
+        stateMachine.IsRunning = false;
     }
     
     protected virtual void OnMove()
     {
-        stateMachine.ChangeState(stateMachine.WalkState);
+        //stateMachine.ChangeState(stateMachine.WalkState);
         
-        // if (!stateMachine.IsRunning)
-        //     stateMachine.ChangeState(stateMachine.WalkState);
-        // else
-        //     stateMachine.ChangeState(stateMachine.RunState);
+        if (!stateMachine.IsRunning)
+            stateMachine.ChangeState(stateMachine.WalkState);
+        else
+            stateMachine.ChangeState(stateMachine.RunState);
+    }
+    
+    protected void ResetAllAnimationParameters()
+    {
+        var animator = stateMachine.Player.Animator;
+        StopAnimation(stateMachine.Player.AnimationData.IdleParameterHash);
+        StopAnimation(stateMachine.Player.AnimationData.WalkParameterHash);
+        StopAnimation(stateMachine.Player.AnimationData.RunParameterHash);
     }
 
     // protected override void OnAttackStarted(InputAction.CallbackContext context)
