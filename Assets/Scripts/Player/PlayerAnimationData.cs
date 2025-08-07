@@ -15,9 +15,10 @@ public class PlayerAnimationData
     // [SerializeField] string jumpParameterName = "Jump";
     // [SerializeField] string fallParameterName = "Fall";
     
-    // [SerializeField] string attackParameterName = "@Attack";
-    // [SerializeField] string baseAttackParameterName = "BaseAttack";
-
+    [SerializeField] string attackParameterName = "@Attack";
+    [SerializeField] string baseAttackParameterName = "BaseAttack";
+    [SerializeField] string runAttackParameterName = "RunAttack";
+    
     [SerializeField] string hitParameterName = "Hit";
     [SerializeField] string dieParameterName = "Die";
 

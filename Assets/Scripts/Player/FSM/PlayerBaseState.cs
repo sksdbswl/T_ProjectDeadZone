@@ -135,8 +135,9 @@ public class PlayerBaseState : IState
     
     protected virtual void OnRunStarted(InputAction.CallbackContext context)
     {
+        Debug.Log("OnRunStarted");
+        StartAnimation(stateMachine.Player.AnimationData.RunParameterHash);
     }
-    
     
     private void AddInputActionsCallbacks()
     {

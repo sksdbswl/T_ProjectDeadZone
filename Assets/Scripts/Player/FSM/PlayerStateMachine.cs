@@ -12,7 +12,8 @@ public class PlayerStateMachine : StateMachine
     public float MovementSpeedModifier { get; set; } = 1f;
 
     public bool IsRunning { get; set; } = false;
-
+    public bool IsSprinting { get; set; } = false;
+    
     public bool IsAttacking { get; set; }
     public AttackInfoData CurrentAttackInfo { get; set; }
 

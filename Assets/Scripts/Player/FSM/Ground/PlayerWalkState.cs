@@ -15,10 +15,11 @@ public class PlayerWalkState : PlayerGroundState
         
         Debug.Log("PlayerWalkState Enter : 걸어 제발 ");
         stateMachine.MovementSpeedModifier = groundData.WalkSpeedModifier;
-
+        StartAnimation(stateMachine.Player.AnimationData.WalkParameterHash);
+        
         base.Enter();
 
-        StartAnimation(stateMachine.Player.AnimationData.WalkParameterHash);
+        
     }
 
     public override void Update()

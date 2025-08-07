@@ -12,11 +12,10 @@ public class PlayerRunState : PlayerGroundState
     public override void Enter()
     {
         Debug.Log("PlayerRunState Enter: 달려 ! ");
-        ResetAllAnimationParameters();
-        
         stateMachine.MovementSpeedModifier = groundData.RunSpeedModifier;
+        
         base.Enter();
-        StartAnimation(stateMachine.Player.AnimationData.RunParameterHash);
+       
     }
     
     public override void Update()

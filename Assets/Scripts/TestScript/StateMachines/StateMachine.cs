@@ -27,5 +27,4 @@ public abstract class StateMachine
     {
         currentState?.PhysicsUpdate();
     }
-
 }

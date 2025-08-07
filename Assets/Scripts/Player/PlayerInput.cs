@@ -18,27 +18,60 @@ public class PlayerInput : MonoBehaviour
     public PlayerInputActions.PlayerActions PlayerActions { get; private set; }
     public CinemachineInputProvider cinemachineInputProvider { get; private set; }
 
+    public bool IsRunPressed { get; private set; } // Shift 상태 저장
+    
     private void Awake()
     {
         playerInputActions = new PlayerInputActions();
         PlayerActions = playerInputActions.Player;
     }
-
+    
+    
     private void OnEnable()
     {
         playerInputActions.Enable();
 
         PlayerActions.Movement.performed += OnMovementPerformed;
         PlayerActions.Movement.canceled += OnMovementCanceled;
+        PlayerActions.Run.performed += OnRunPerformed;
+        PlayerActions.Run.canceled += OnRunCanceled;
     }
 
     private void OnDisable()
     {
         PlayerActions.Movement.performed -= OnMovementPerformed;
         PlayerActions.Movement.canceled -= OnMovementCanceled;
+        PlayerActions.Run.performed -= OnRunPerformed;
+        PlayerActions.Run.canceled -= OnRunCanceled;
 
         playerInputActions.Disable();
     }
+
+    private void OnRunPerformed(InputAction.CallbackContext context)
+    {
+        IsRunPressed = true;
+    }
+
+    private void OnRunCanceled(InputAction.CallbackContext context)
+    {
+        IsRunPressed = false;
+    }
+
+    // private void OnEnable()
+    // {
+    //     playerInputActions.Enable();
+    //
+    //     PlayerActions.Movement.performed += OnMovementPerformed;
+    //     PlayerActions.Movement.canceled += OnMovementCanceled;
+    // }
+    //
+    // private void OnDisable()
+    // {
+    //     PlayerActions.Movement.performed -= OnMovementPerformed;
+    //     PlayerActions.Movement.canceled -= OnMovementCanceled;
+    //
+    //     playerInputActions.Disable();
+    // }
 
     private void OnMovementPerformed(InputAction.CallbackContext context)
     {
