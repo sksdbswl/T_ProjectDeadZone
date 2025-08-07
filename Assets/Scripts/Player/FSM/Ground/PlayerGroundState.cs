@@ -66,8 +66,6 @@ public class PlayerGroundState : PlayerBaseState
     
     protected virtual void OnMove()
     {
-        //stateMachine.ChangeState(stateMachine.WalkState);
-        
         if (!stateMachine.IsRunning)
             stateMachine.ChangeState(stateMachine.WalkState);
         else

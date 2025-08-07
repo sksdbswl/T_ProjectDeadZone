@@ -55,6 +55,31 @@ public class PlayerBaseState : IState
         Move(movementDirection);
     }
 
+    private void Move(Vector3 movementDirection)
+    {
+        float movementSpeed = GetMovementSpeed();
+        
+        stateMachine.Player.Controller.Move(
+            (
+                (movementDirection * movementSpeed)
+                + stateMachine.Player.ForceHandler.Movement
+            )
+            * Time.deltaTime
+        );
+    }
+    
+    // private void Move(Vector3 movementDirection)
+    // {
+    //     Debug.Log($"movementDirection:: 움직여라 !@");
+    //     Debug.Log($"movementDirection: {movementDirection}, speed: {GetMovementSpeed()}, grounded: {stateMachine.Player.Controller.isGrounded}");
+    //     
+    //     float movementSpeed = GetMovementSpeed();
+    //
+    //     stateMachine.Player.Controller.Move(
+    //         movementDirection * (movementSpeed * Time.deltaTime)
+    //     );
+    // }
+    
     private Vector3 GetMovementDirection()
     {
         Vector3 forward = stateMachine.MainCameraTransform.forward;
@@ -77,17 +102,6 @@ public class PlayerBaseState : IState
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
             playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, targetRotation, stateMachine.RotationDamping * Time.deltaTime);
         }
-    }
-
-    private void Move(Vector3 movementDirection)
-    {
-        //Debug.Log($"movementDirection::{movementDirection}");
-        
-        float movementSpeed = GetMovementSpeed();
-
-        stateMachine.Player.Controller.Move(
-            movementDirection * (movementSpeed * Time.deltaTime)
-        );
     }
     
     // private void Move(Vector3 movementDirection)

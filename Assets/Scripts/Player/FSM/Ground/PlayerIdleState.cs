@@ -13,6 +13,7 @@ public class PlayerIdleState : PlayerGroundState
         ResetAllAnimationParameters();
         
         stateMachine.MovementSpeedModifier = 0f;
+        
         base.Enter();
         
         StartAnimation(stateMachine.Player.AnimationData.IdleParameterHash);

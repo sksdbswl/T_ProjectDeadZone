@@ -14,12 +14,16 @@ public class Player : MonoBehaviour
     public PlayerInput Input { get; private set; }
     public CharacterController Controller { get; private set; }
 
+    public ForceHandler ForceHandler { get; private set; }
+    
     private void Awake()
     {
         Rigidbody = GetComponent<Rigidbody>();
         Animator = GetComponentInChildren<Animator>();
         Input = GetComponent<PlayerInput>();
         Controller = GetComponent<CharacterController>();
+        //중력 처리
+        ForceHandler = GetComponent<ForceHandler>();
     }
 
     private void Start()

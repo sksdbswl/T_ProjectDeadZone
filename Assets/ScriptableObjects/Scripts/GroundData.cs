@@ -16,6 +16,4 @@ public class GroundData
     
     [field: Header("RunData")]
     [field: SerializeField][field: Range(0f, 2f)] public float RunSpeedModifier { get; private set; } = 1f;
-
-
 }
