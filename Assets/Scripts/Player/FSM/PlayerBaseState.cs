@@ -50,60 +50,50 @@ public class PlayerBaseState : IState
     
     private void Move()
     {
-        Vector3 movementDirection = GetMovementDirection();
-        Rotate(movementDirection);
-        Move(movementDirection);
+        // Vector3 movementDirection = GetMovementDirection();
+        // Rotate(movementDirection);
+        // Move(movementDirection);
+        UpdateMovement();
+        UpdateCameraRotation();
     }
-
-    private void Move(Vector3 movementDirection)
+    
+    private Vector3 velocity;
+    public float gravity = -9.81f;
+    
+    private void UpdateMovement()
     {
+        float moveX = Input.GetAxis("Horizontal");
+        float moveZ = Input.GetAxis("Vertical");
         float movementSpeed = GetMovementSpeed();
         
-        stateMachine.Player.Controller.Move(
-            (
-                (movementDirection * movementSpeed)
-                + stateMachine.Player.ForceHandler.Movement
-            )
-            * Time.deltaTime
-        );
+        Vector3 move = stateMachine.Player.transform.right * moveX + stateMachine.Player.transform.forward * moveZ;
+        stateMachine.Player.Controller.Move(move * (movementSpeed * Time.deltaTime));
+    
+        velocity.y += gravity * Time.deltaTime;
+        stateMachine.Player.Controller.Move(velocity * Time.deltaTime);
     }
     
-    // private void Move(Vector3 movementDirection)
-    // {
-    //     Debug.Log($"movementDirection:: 움직여라 !@");
-    //     Debug.Log($"movementDirection: {movementDirection}, speed: {GetMovementSpeed()}, grounded: {stateMachine.Player.Controller.isGrounded}");
-    //     
-    //     float movementSpeed = GetMovementSpeed();
-    //
-    //     stateMachine.Player.Controller.Move(
-    //         movementDirection * (movementSpeed * Time.deltaTime)
-    //     );
-    // }
+    [Header("Camera Settings")]
+    public float mouseSensitivity = 2f;
+    public float maxLookAngle = 80f;
+    private float verticalLookRotation = 0f;
+    private Quaternion initialCameraRotation;
     
-    private Vector3 GetMovementDirection()
+    private void UpdateCameraRotation()
     {
-        Vector3 forward = stateMachine.MainCameraTransform.forward;
-        Vector3 right = stateMachine.MainCameraTransform.right;
-
-        forward.y = 0;
-        right.y = 0;
-
-        forward.Normalize();
-        right.Normalize();
-
-        return (forward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x).normalized;
-    }
-
-    private void Rotate(Vector3 movementDirection)
-    {
-        if (movementDirection != Vector3.zero)
-        {
-            Transform playerTransform = stateMachine.Player.transform;
-            Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
-            playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, targetRotation, stateMachine.RotationDamping * Time.deltaTime);
-        }
-    }
+        float mouseX = Input.GetAxisRaw("Mouse X") * mouseSensitivity;
+        float mouseY = Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
     
+        Quaternion yawRotation = Quaternion.AngleAxis(mouseX, Vector3.up);
+        stateMachine.Player.transform.rotation *= yawRotation;
+    
+        verticalLookRotation -= mouseY;
+        verticalLookRotation = Mathf.Clamp(verticalLookRotation, -maxLookAngle, maxLookAngle);
+    
+        Quaternion pitchRotation = Quaternion.AngleAxis(verticalLookRotation, Vector3.right);
+        stateMachine.MainCameraTransform.localRotation = initialCameraRotation * pitchRotation;
+    }
+
     // private void Move(Vector3 movementDirection)
     // {
     //     float movementSpeed = GetMovementSpeed();
@@ -116,16 +106,34 @@ public class PlayerBaseState : IState
     //         * Time.deltaTime
     //     );
     // }
-
-    protected void ForceMove()
-    {
-        // stateMachine.Player.Controller.Move(
-        //     (
-        //         stateMachine.Player.ForceHandler.Movement
-        //     )
-        //     * Time.deltaTime
-        // );
-    }
+    //
+    // private Vector3 GetMovementDirection()
+    // {
+    //     Vector3 forward = stateMachine.MainCameraTransform.forward;
+    //     Vector3 right = stateMachine.MainCameraTransform.right;
+    //
+    //     forward.y = 0;
+    //     right.y = 0;
+    //
+    //     forward.Normalize();
+    //     right.Normalize();
+    //
+    //     return (forward * stateMachine.MovementInput.y + right * stateMachine.MovementInput.x).normalized;
+    // }
+    //
+    // private void Rotate(Vector3 movementDirection)
+    // {
+    //     if (movementDirection.sqrMagnitude > 0.001f) // 거의 0이면 회전 안 함
+    //     {
+    //         Transform playerTransform = stateMachine.Player.transform;
+    //         Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+    //         playerTransform.rotation = Quaternion.Slerp(
+    //             playerTransform.rotation,
+    //             targetRotation,
+    //             stateMachine.RotationDamping * Time.deltaTime
+    //         );
+    //     }
+    // }
 
     private float GetMovementSpeed()
     {

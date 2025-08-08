@@ -151,6 +151,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 120086449}
   - {fileID: 984733252}
   m_Father: {fileID: 1598656400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -164,7 +165,6 @@ GameObject:
   m_Component:
   - component: {fileID: 120086449}
   - component: {fileID: 120086450}
-  - component: {fileID: 120086451}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -186,7 +186,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1009987315}
-  m_Father: {fileID: 984733252}
+  m_Father: {fileID: 112961940}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &120086450
 MonoBehaviour:
@@ -234,22 +234,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1009987315}
---- !u!114 &120086451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 120086448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed2f1d9f9ff45fe83cfe60316e76e5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraRoot: {fileID: 112961940}
-  cameraPivot: {fileID: 984733252}
-  mouseSensitivity: 3
-  clampAngle: 80
 --- !u!1 &326319454 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6860972453696869154, guid: 3e172f5366acd214c910144318c79edb, type: 3}
@@ -1092,7 +1076,6 @@ GameObject:
   m_Component:
   - component: {fileID: 976712867}
   - component: {fileID: 976712868}
-  - component: {fileID: 976712869}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -1114,7 +1097,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1024513539}
-  m_Father: {fileID: 1297139702}
+  m_Father: {fileID: 1991532243}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &976712868
 MonoBehaviour:
@@ -1162,22 +1145,6 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_ComponentOwner: {fileID: 1024513539}
---- !u!114 &976712869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976712866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ed2f1d9f9ff45fe83cfe60316e76e5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraRoot: {fileID: 1991532243}
-  cameraPivot: {fileID: 1297139702}
-  mouseSensitivity: 3
-  clampAngle: 80
 --- !u!1 &984733251
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,7 +1160,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &984733252
 Transform:
   m_ObjectHideFlags: 0
@@ -1206,8 +1173,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 120086449}
+  m_Children: []
   m_Father: {fileID: 112961940}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1009987314
@@ -1415,7 +1381,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1297139702
 Transform:
   m_ObjectHideFlags: 0
@@ -1428,8 +1394,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 976712867}
+  m_Children: []
   m_Father: {fileID: 1991532243}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1598656400 stripped
@@ -1466,6 +1431,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 976712867}
   - {fileID: 1297139702}
   m_Father: {fileID: 1598656400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
