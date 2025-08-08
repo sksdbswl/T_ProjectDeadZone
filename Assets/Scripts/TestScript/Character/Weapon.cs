@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Weapon : MonoBehaviour
+public class WeaponTest : MonoBehaviour
 {
     public event Action<HealthSystem> OnTargetDetected;
 
@@ -27,7 +27,7 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Weapon Collider°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+            Debug.LogWarning("Weapon Colliderï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
         }
     }
 

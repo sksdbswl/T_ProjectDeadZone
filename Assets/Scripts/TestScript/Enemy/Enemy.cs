@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
     public ForceHandler ForceHandler { get; private set; }
     private EnemyStateMachine stateMachine;
 
-    [field: SerializeField] public Weapon CurrentWeapon { get; private set; }
+    [field: SerializeField] public WeaponTest CurrentWeapon { get; private set; }
     public HealthSystem HealthSystem { get; private set; }
     [field: SerializeField] public LayerMask entityLayerMask { get; private set; }
 
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
         HealthSystem = GetComponent<HealthSystem>();
         if(CurrentWeapon == null)
         {
-            CurrentWeapon = GetComponentInChildren<Weapon>();
+            CurrentWeapon = GetComponentInChildren<WeaponTest>();
             CurrentWeapon.Initialize(entityLayerMask);
         }
     }

@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [field: SerializeField] public PlayerAnimationData AnimationData { get; private set; }
     [field: SerializeField] public PlayerSO Data { get; private set; }
 
+    [SerializeField] private IKController IKController;
+    
     public PlayerStateMachine StateMachine { get; private set; }
     public Rigidbody Rigidbody { get; private set; }
     public Animator Animator { get; private set; }
@@ -52,6 +54,13 @@ public class Player : MonoBehaviour
     {
         StateMachine.PhysicsUpdate();
     }
+    
+    private void OnTriggerEnter(Collider other)
+     {
+         // TODO 무기 변경일 경우 ik pos 변경해주기
+         Weapon TriggerWeapon = other.GetComponent<Weapon>();
+         TriggerWeapon.EquipWeapon(TriggerWeapon, IKController);
+     }
 }
 
 // public class Player : MonoBehaviour

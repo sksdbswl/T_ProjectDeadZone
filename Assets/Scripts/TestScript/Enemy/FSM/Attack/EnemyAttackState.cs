@@ -47,7 +47,7 @@ public class EnemyAttackState : EnemyBaseState
         {
             stateMachine.ChangeState(stateMachine.IdleState);
 
-            Weapon weapon = stateMachine.Enemy.CurrentWeapon;
+            WeaponTest weapon = stateMachine.Enemy.CurrentWeapon;
             weapon.DeactiveCollider();
             return true;    
         }
@@ -87,7 +87,7 @@ public class EnemyAttackState : EnemyBaseState
     private void ActivateWeaponCollider()
     {
         alreadyAppliedDamage = true;
-        Weapon weapon = stateMachine.Enemy.CurrentWeapon;
+        WeaponTest weapon = stateMachine.Enemy.CurrentWeapon;
         if (weapon != null)
         {
             weapon.OnTargetDetected -= ApplyDamage;
