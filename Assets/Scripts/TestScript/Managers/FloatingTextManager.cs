@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
+//using TMPro;
 using UnityEngine;
 
 public class FloatingTextData
@@ -47,11 +47,11 @@ public class FloatingTextManager : MonoBehaviour
         GameObject floatingText = Instantiate(textPrefab, canvas.transform);
         floatingText.transform.position = screenPosition;
 
-        TextMeshProUGUI text = floatingText.GetComponent<TextMeshProUGUI>();
-        if (text != null)
-        {
-            text.text = message;
-        }
+        //TextMeshProUGUI text = floatingText.GetComponent<TextMeshProUGUI>();
+        // if (text != null)
+        // {
+        //     text.text = message;
+        // }
 
         RectTransform rectTransform = floatingText.GetComponent<RectTransform>();
         CanvasGroup canvasGroup = floatingText.GetComponent<CanvasGroup>();

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -10,8 +9,8 @@ public class ItemSlotUI : MonoBehaviour, IPointerClickHandler
     ItemInstance itemInstance;
     public ItemInstance ItemInstance { get { return itemInstance; } }
 
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI amountText;
+    // [SerializeField] private TextMeshProUGUI nameText;
+    // [SerializeField] private TextMeshProUGUI amountText;
 
     public void Initialize(InventoryUI inventoryUI)
     {
@@ -21,8 +20,8 @@ public class ItemSlotUI : MonoBehaviour, IPointerClickHandler
     public void SetUI(ItemInstance itemInstance)
     {
         this.itemInstance = itemInstance;
-        nameText.text = ItemInstance.ItemData.name;
-        amountText.text = ItemInstance.amount.ToString();
+        // nameText.text = ItemInstance.ItemData.name;
+        // amountText.text = ItemInstance.amount.ToString();
     }
 
     public void OnPointerClick(PointerEventData eventData)
